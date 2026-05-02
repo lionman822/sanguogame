@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>单骑破阵</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="top-bar">
+        <div>
+          <p class="eyebrow">官渡前哨</p>
+          <h1>单骑破阵</h1>
+        </div>
+        <div class="seal" aria-label="袁军防阵">袁</div>
+      </header>
+
+      <div class="game-layout">
+        <section class="panel roster-panel" aria-labelledby="choose-title">
+          <div class="panel-heading">
+            <p class="eyebrow">200 米外</p>
+            <h2 id="choose-title">选将</h2>
+          </div>
+
+          <div class="faction-tabs" id="factionTabs" role="tablist" aria-label="阵营"></div>
+          <div class="roster-grid" id="rosterGrid"></div>
+
+          <div class="chosen-box">
+            <div>
+              <span class="small-label">出阵</span>
+              <strong id="chosenName">张辽</strong>
+            </div>
+            <button class="primary-action" id="runButton" type="button">自动推演</button>
+          </div>
+        </section>
+
+        <section class="battle-panel" aria-labelledby="battle-title">
+          <div class="battle-status">
+            <div>
+              <p class="eyebrow" id="phaseLabel">待命</p>
+              <h2 id="battle-title">袁绍军团防守阵型</h2>
+            </div>
+            <div class="distance-readout">
+              <span>距颜良</span>
+              <strong id="distanceValue">200 米</strong>
+            </div>
+          </div>
+
+          <div class="canvas-shell">
+            <canvas id="battlefield" aria-label="战场推演画面"></canvas>
+            <div class="battle-scene" id="battleScene" aria-hidden="true">
+              <div class="field-grid"></div>
+              <div class="charge-route"></div>
+              <div class="army-label label-infantry">步兵盾槊阵</div>
+              <div class="army-label label-archers">弓兵后列</div>
+              <div class="army-label label-cavalry">两翼骑兵</div>
+              <div class="unit-layer" id="unitLayer"></div>
+              <div class="yanliang-unit">
+                <span class="target-ring"></span>
+                <span class="horse-shape yan-horse"></span>
+                <span class="rider-shape yan-rider">良</span>
+                <span class="unit-name">颜良</span>
+              </div>
+              <div class="player-unit" id="playerUnit">
+                <span class="player-aura"></span>
+                <span class="horse-shape player-horse"></span>
+                <span class="rider-shape player-rider" id="playerSigil">张</span>
+                <span class="unit-name" id="playerNameTag">张辽</span>
+              </div>
+              <div class="camp-line">
+                <span class="tent tent-a"></span>
+                <span class="tent tent-b"></span>
+                <span class="camp-name">己方营寨</span>
+              </div>
+              <div class="phase-flash" id="phaseFlash">待命</div>
+            </div>
+          </div>
+
+          <div class="meter-strip">
+            <div class="meter-cell">
+              <span>体力</span>
+              <div class="meter"><i id="staminaMeter"></i></div>
+              <strong id="staminaValue">100</strong>
+            </div>
+            <div class="meter-cell">
+              <span>锐势</span>
+              <div class="meter"><i id="momentumMeter"></i></div>
+              <strong id="momentumValue">0</strong>
+            </div>
+            <div class="meter-cell">
+              <span>伤势</span>
+              <div class="meter danger"><i id="woundMeter"></i></div>
+              <strong id="woundValue">0</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel report-panel" aria-labelledby="report-title">
+          <div class="panel-heading">
+            <p class="eyebrow">推演战报</p>
+            <h2 id="report-title">结果</h2>
+          </div>
+
+          <div class="result-card" id="resultCard">
+            <strong>择将待命</strong>
+            <p>袁军盾槊环列，骑兵伏于两翼，颜良按刀立马于阵心。</p>
+          </div>
+
+          <ol class="log-list" id="logList">
+            <li>张辽勒马听鼓，袁字大旗在远处起伏。</li>
+          </ol>
+        </section>
+      </div>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760">
+  <defs>
+    <style>
+      .paper { fill: #fbfaf5; }
+      .ink { fill: none; stroke: #111; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+      .thin { fill: none; stroke: #111; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; opacity: .72; }
+      .fill { fill: #f5efe2; stroke: #111; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+      .label-box { fill: #fff; stroke: #111; stroke-width: 3; }
+      .label { font-family: "Songti SC", "STSong", serif; font-size: 48px; font-weight: 700; fill: #111; }
+    </style>
+    <g id="infantry">
+      <path class="fill" d="M85 148c28-36 85-38 116 0l-14 128H69l16-128Z" />
+      <circle class="fill" cx="145" cy="88" r="34" />
+      <path class="ink" d="M88 146c27-39 83-42 115 0M88 146l-24 128M204 146l14 128" />
+      <path class="thin" d="M96 188h93M90 220h98M84 252h90M108 180v96M136 174v102M164 180v96" />
+      <path class="ink" d="M108 61c24-34 78-30 97 2M105 87h76" />
+      <path class="ink" d="M147 41c22-34 50-24 70-4M143 38c-28-9-52-5-74 15" />
+      <path class="thin" d="M131 92c8 4 18 4 28 0M128 110c18 12 36 10 50-2" />
+      <path class="ink" d="M220 12L63 335M195 44l43-37M72 304l-36 42" />
+      <path class="ink" d="M195 42l49-32-20 58" />
+      <path class="thin" d="M194 86c14 17 14 35 0 52M96 160c34 8 72 8 106 0M83 206c39 8 78 8 117 0M84 244c35 11 72 11 111 0" />
+      <path class="ink" d="M75 276l-46 66M184 276l37 66M35 336c31 11 62 11 93 0M154 336c30 12 57 12 82 0" />
+    </g>
+    <g id="shield">
+      <use href="#infantry"/>
+      <path class="fill" d="M22 150c36-26 78-26 114 0v94c-18 44-54 69-114 73-26-54-26-111 0-167Z" />
+      <path class="thin" d="M40 172h78M36 207h86M36 242h86M54 160c-11 42-11 83 0 124M92 156c12 44 12 88 0 132" />
+      <path class="ink" d="M52 228c29-26 62-25 67 4-18 25-47 29-67-4Z" />
+    </g>
+    <g id="archer">
+      <path class="fill" d="M85 148c28-36 85-38 116 0l-14 128H69l16-128Z" />
+      <circle class="fill" cx="145" cy="88" r="34" />
+      <path class="ink" d="M88 146c27-39 83-42 115 0M88 146l-24 128M204 146l14 128" />
+      <path class="thin" d="M96 188h93M90 220h98M84 252h90M108 180v96M136 174v102M164 180v96" />
+      <path class="ink" d="M108 61c24-34 78-30 97 2M105 87h76" />
+      <path class="ink" d="M147 41c22-34 50-24 70-4M143 38c-28-9-52-5-74 15" />
+      <path class="thin" d="M131 92c8 4 18 4 28 0M128 110c18 12 36 10 50-2" />
+      <path class="ink" d="M25 12c68 51 72 213 0 300" />
+      <path class="thin" d="M25 12c14 84 14 180 0 300" />
+      <path class="ink" d="M32 166h160M178 150l35 16-35 16" />
+      <path class="ink" d="M86 170l-50 51M200 158l35 48" />
+      <path class="thin" d="M96 160c34 8 72 8 106 0M83 206c39 8 78 8 117 0M84 244c35 11 72 11 111 0" />
+      <path class="ink" d="M75 276l-46 66M184 276l37 66M35 336c31 11 62 11 93 0M154 336c30 12 57 12 82 0" />
+    </g>
+    <g id="cavalry">
+      <path class="fill" d="M40 220c34-73 153-97 240-57 40 19 60 54 53 84-80 36-223 34-306 0 0-11 4-21 13-27Z" />
+      <path class="ink" d="M20 235c28-64 107-93 180-90 67 3 131 40 141 94" />
+      <path class="thin" d="M56 208c40-38 114-47 174-27M52 252c61 25 193 28 280-7" />
+      <path class="ink" d="M260 160c28-54 80-47 100-7 11 24-4 48-35 55" />
+      <path class="thin" d="M276 158c21 4 40 15 57 34M312 139c8-20 25-24 40-16" />
+      <path class="ink" d="M58 257l-28 48M114 260l-7 46M250 256l25 46M315 249l42 42" />
+      <path class="thin" d="M72 260c-22 8-37 22-50 40M250 260c22 13 34 26 42 42M320 252c28 4 47 17 60 34" />
+      <path class="ink" d="M39 210c-28-30-14-62 20-79" />
+      <path class="fill" d="M162 103c17-45 75-45 94-3l-14 96h-72l-8-93Z" />
+      <circle class="fill" cx="207" cy="78" r="28" />
+      <path class="ink" d="M165 103c18-48 73-50 94 0M172 107l-16 86M252 107l14 86" />
+      <path class="thin" d="M180 132h66M182 156h60M190 119v72M212 116v75M234 120v70" />
+      <path class="ink" d="M186 62c18-23 50-21 66 0M184 76h56M213 45c20-26 47-18 68 0M211 44c-22-8-42-6-60 7" />
+      <path class="thin" d="M198 80c8 4 17 4 25 0M194 92c12 11 31 10 42 0" />
+      <path class="ink" d="M258 102L374 34M354 45l34-22-15 39" />
+      <path class="thin" d="M105 179c28 7 54 6 78 0M93 203c36 7 70 6 104 0M226 188c35 0 63 8 91 24M280 166c17 7 34 21 48 37" />
+    </g>
+  </defs>
+  <rect class="paper" width="1400" height="760"/>
+  <g transform="translate(95 80)">
+    <rect class="label-box" x="42" y="0" width="190" height="62"/>
+    <text class="label" x="137" y="45" text-anchor="middle">弓兵</text>
+    <g transform="translate(0 125) scale(1.15)"><use href="#archer"/></g>
+  </g>
+  <g transform="translate(405 80)">
+    <rect class="label-box" x="100" y="0" width="190" height="62"/>
+    <text class="label" x="195" y="45" text-anchor="middle">骑兵</text>
+    <g transform="translate(0 155) scale(1.05)"><use href="#cavalry"/></g>
+  </g>
+  <g transform="translate(820 80)">
+    <rect class="label-box" x="42" y="0" width="190" height="62"/>
+    <text class="label" x="137" y="45" text-anchor="middle">盾兵</text>
+    <g transform="translate(0 125) scale(1.15)"><use href="#shield"/></g>
+  </g>
+  <g transform="translate(1110 80)">
+    <rect class="label-box" x="42" y="0" width="190" height="62"/>
+    <text class="label" x="137" y="45" text-anchor="middle">枪兵</text>
+    <g transform="translate(0 125) scale(1.15)"><use href="#infantry"/></g>
+  </g>
+</svg>
