@@ -164,7 +164,18 @@
 <script src="./assets/art-17.js"></script>
 <script>document.getElementById('art').src='data:image/png;base64,'+(window.__duelArt||[]).join('');delete window.__duelArt;</script>
 <script>
-'use strict';const heroes=[['关羽','蜀',97,92,88,97,95,94,'青龙偃月刀','#376b49'],['张飞','蜀',97,85,86,93,93,98,'丈八蛇矛','#4d5f40'],['赵云','蜀',94,93,98,96,98,91,'亮银枪','#76969d'],['马超','蜀',95,88,96,94,92,93,'虎头枪','#8c99ad'],['黄忠','蜀',90,88,83,94,94,85,'凤嘴刀','#a89065'],['魏延','蜀',89,87,87,90,90,91,'长刀','#744c3d'],['吕布','群',100,95,96,100,93,99,'方天画戟','#a72e2e'],['典韦','魏',96,87,79,93,97,98,'双铁戟','#6a5557'],['许褚','魏',94,93,75,88,95,99,'大刀','#9e744b'],['孙策','吴',91,88,91,91,91,91,'长枪','#a94f3b'],['太史慈','吴',90,90,89,92,95,90,'双戟','#647c85'],['甘宁','吴',90,84,95,92,92,88,'长刀','#8d5e54']];const $=id=>document.getElementById(id);let selection=[0,6],target=0,busy=false,battleLog=[],lastStats=[];const stats=['攻击','防御','速度','武技','意志','体魄'];function setTarget(i){target=i;$('sideA').classList.toggle('selected',i===0);$('sideB').classList.toggle('selected',i===1);render()}function choose(i){if(busy)return;if(selection[1-target]===i){selection[1-target]=selection[target]}selection[target]=i;render()}function render(){for(let s=0;s<2;s++){$('label'+(s?'B':'A')).textContent=heroes[selection[s]][0];$('nm'+s).textContent=heroes[selection[s]][0];if (!busy) {
+'use strict';const heroes=[['关羽','蜀',97,92,88,97,95,94,'青龙偃月刀','#376b49'],['张飞','蜀',97,85,86,93,93,98,'丈八蛇矛','#4d5f40'],['赵云','蜀',94,93,98,96,98,91,'亮银枪','#76969d'],['马超','蜀',95,88,96,94,92,93,'虎头枪','#8c99ad'],['黄忠','蜀',90,88,83,94,94,85,'凤嘴刀','#a89065'],['魏延','蜀',89,87,87,90,90,91,'长刀','#744c3d'],['吕布','群',100,95,96,100,93,99,'方天画戟','#a72e2e'],['典韦','魏',96,87,79,93,97,98,'双铁戟','#6a5557'],['许褚','魏',94,93,75,88,95,99,'大刀','#9e744b'],['孙策','吴',91,88,91,91,91,91,'长枪','#a94f3b'],['太史慈','吴',90,90,89,92,95,90,'双戟','#647c85'],['甘宁','吴',90,84,95,92,92,88,'长刀','#8d5e54'],
+  ['姜维','蜀',91,89,92,95,94,88,'长枪','#508678'],
+  ['邓艾','魏',88,94,86,92,95,92,'长枪','#69748b'],
+  ['吕蒙','吴',87,90,89,93,93,86,'长刀','#8e6451'],
+  ['程普','吴',89,91,83,90,93,92,'铁脊蛇矛','#9f654a'],
+  ['夏侯惇','魏',93,89,86,91,95,96,'长枪','#524464'],
+  ['夏侯渊','魏',91,86,95,89,91,91,'长刀','#496782'],
+  ['张郃','魏',90,92,92,94,92,90,'长枪','#7b5473'],
+  ['颜良','群',97,87,88,93,92,96,'大刀','#a16b40'],
+  ['文丑','群',95,88,92,92,91,95,'长枪','#77583c'],
+  ['徐晃','魏',92,93,83,92,94,96,'开山斧','#626c55'],
+];const $=id=>document.getElementById(id);let selection=[0,6],target=0,busy=false,battleLog=[],lastStats=[];const stats=['攻击','防御','速度','武技','意志','体魄'];function setTarget(i){target=i;$('sideA').classList.toggle('selected',i===0);$('sideB').classList.toggle('selected',i===1);render()}function choose(i){if(busy)return;if(selection[1-target]===i){selection[1-target]=selection[target]}selection[target]=i;render()}function render(){for(let s=0;s<2;s++){$('label'+(s?'B':'A')).textContent=heroes[selection[s]][0];$('nm'+s).textContent=heroes[selection[s]][0];if (!busy) {
   const fighter = $('fighter'+s);
   const hero = heroes[selection[s]];
   delete fighter.dataset.motion;
@@ -176,11 +187,15 @@
 }
 function warriorSvg(hero) {
   const color = hero[9];
-  const blade = /戟/.test(hero[8])
-    ? 'M181 36L207 12L198 37L189 42L191 62Q172 57 175 40Z'
-    : weaponMotion(hero) === 'thrust'
-      ? 'M181 37L207 12L196 42L186 46Z'
-      : 'M178 38Q182 16 210 10Q208 30 186 47Z';
+  const weapon = hero[8];
+  let blade = 'M178 38Q182 16 210 10Q208 30 186 47Z';
+  if (weapon.includes('斧')) {
+    blade = 'M184 39L178 29L186 12Q205 14 215 32L202 47L192 39L189 48Z';
+  } else if (weapon.includes('戟')) {
+    blade = 'M181 36L207 12L198 37L189 42L191 62Q172 57 175 40Z';
+  } else if (weaponMotion(hero) === 'thrust') {
+    blade = 'M181 37L207 12L196 42L186 46Z';
+  }
   return `<svg viewBox="0 0 220 195" aria-hidden="true">
     <g class="mount" stroke="#201719" stroke-linejoin="round">
       <path class="leg" style="--joint:51px" d="M44 131L61 135L55 157L40 178H27L40 153Z" fill="#493127" stroke-width="4"/>
