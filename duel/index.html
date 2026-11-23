@@ -91,6 +91,59 @@
   .warrior[data-figure]::after, .strike-trail, .hoof-dust { animation:none !important; }
 }
 
+.warrior[data-figure="guan"], .warrior[data-figure="lu"] {
+  width:min(38%, 350px);
+  transform-origin:50% 96%;
+  transition:none;
+}
+.warrior[data-figure]:not([data-figure=""])::before {
+  content:""; position:absolute; left:17%; right:18%; bottom:1%;
+  height:7%; background:radial-gradient(ellipse,#1e180e88,transparent 68%);
+  transform:translateY(48%);
+}
+.warrior[data-figure]:not([data-figure=""])[data-phase="windup"] {
+  animation:load-weight var(--windup,265ms) ease-in-out both;
+}
+.warrior[data-figure]:not([data-figure=""])[data-phase="charge"],
+.warrior[data-figure]:not([data-figure=""])[data-phase="contact"],
+.warrior[data-figure]:not([data-figure=""])[data-phase="recover"] {
+  animation:ride-through 670ms both;
+}
+.warrior[data-figure]:not([data-figure=""])[data-motion="hit"] {
+  animation:absorb-hit 385ms both;
+}
+.warrior[data-figure]:not([data-figure=""])[data-phase="recover"]::after {
+  animation:resettle 210ms ease-out both;
+}
+@keyframes load-weight {
+  from {transform:scaleX(var(--facing))}
+  to {transform:scaleX(var(--facing)) translateX(-6%) rotate(-3deg)}
+}
+@keyframes ride-through {
+  0% {transform:scaleX(var(--facing)) translateX(-6%) rotate(-3deg); animation-timing-function:cubic-bezier(.43,.05,.38,1)}
+  37% {transform:scaleX(var(--facing)) translateX(32%) translateY(-1.5%) rotate(2deg); animation-timing-function:ease-out}
+  51% {transform:scaleX(var(--facing)) translateX(33%) rotate(1deg); animation-timing-function:ease-in-out}
+  69% {transform:scaleX(var(--facing)) translateX(13%) rotate(-2deg); animation-timing-function:ease-out}
+  89% {transform:scaleX(var(--facing)) translateX(1.5%) rotate(.7deg)}
+  100% {transform:scaleX(var(--facing))}
+}
+@keyframes absorb-hit {
+  0%,100% {transform:scaleX(var(--facing))}
+  21% {transform:scaleX(var(--facing)) translateX(-12%) rotate(-5deg); animation-timing-function:ease-out}
+  56% {transform:scaleX(var(--facing)) translateX(-7%) rotate(-1.5deg); animation-timing-function:ease-in-out}
+}
+@keyframes resettle {
+  0% {transform:scaleY(.985)}
+  55% {transform:scaleY(1.012)}
+  100% {transform:scaleY(1)}
+}
+.view:has(.warrior[data-figure]:not([data-figure=""])) .impact { top:48%; }
+.view:has(.warrior[data-figure]:not([data-figure=""])) .strike-trail { top:37%; }
+@media (max-width:600px) {
+  .warrior[data-figure="guan"], .warrior[data-figure="lu"] { bottom:20%; }
+  .view:has(.warrior[data-figure]:not([data-figure=""])) .impact { top:57%; }
+  .view:has(.warrior[data-figure]:not([data-figure=""])) .strike-trail { top:46%; }
+}
 </style></head><body><header class="top"><h1>三国·武将巅峰对决</h1><small>2D漫画视觉版 · 自由选将 · AI自动演算</small></header><main class="wrap"><section class="hero" aria-label="2D三国对决美术主界面"><img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="关羽与吕布在三国战场交锋的手绘2D游戏视觉稿" id="art"><div id="hotspots"></div><div class="overlay-name left" id="labelA">关羽</div><div class="overlay-name right" id="labelB">吕布</div></section><div class="panel"><div class="actionrow" style="justify-content:space-between"><span class="sub">点击上方武将头像与战场选项，或使用下方完整控制台</span><button class="outline" id="jump">⚔ 开始单挑</button></div></div><div class="controls"><section class="panel"><h2>武将选择 <span class="sub">点击选择左、右出战者</span></h2><div class="actionrow" style="margin-bottom:10px"><button class="chip selected" id="sideA">左方出战</button><button class="chip" id="sideB">右方出战</button></div><div class="hero-picker" id="roster"></div><div class="statgrid" id="stats" style="margin-top:12px"></div></section><section class="panel"><h2>规则与战场</h2><div class="actionrow"><label>模式 <select id="mode"><option>演义传奇</option><option selected>史演混合</option><option>史实克制</option></select></label><label>环境 <select id="weather"><option selected>平原</option><option>风沙</option><option>暴雨</option><option>雪原</option></select></label></div><p class="minitip">技能、属性及胜负概率为游戏设计值，不是可验证的历史单挑数据。即使武力较低，也可能通过战术与体力优势取胜。</p><p id="battleStatus" class="status">12位名将已就位。</p><button class="primary" id="start">⚔ 开始单挑</button></section></div><section class="panel" id="battle"><h2>战斗直播 <span class="sub">逐合演算 · 动态动作 · 解说</span></h2><div class="view"><div class="sun"></div><div class="ground"></div><div id="fighter0" class="warrior left"></div><div id="fighter1" class="warrior right"></div><div class="vs">VS</div><div class="strike-trail" aria-hidden="true"></div><div class="hoof-dust" aria-hidden="true"></div><div id="impact" class="impact" aria-hidden="true"></div></div><div class="bars"><div><b id="nm0">关羽</b> <span id="st0" class="sub"></span><div class="bar"><i id="hp0"></i></div></div><div><b id="nm1">吕布</b> <span id="st1" class="sub"></span><div class="bar"><i id="hp1"></i></div></div></div><div class="announce" id="result">对决尚未开始</div><div class="log" id="log"><p>请选择武将，点击“开始单挑”进行AI自动对决。</p></div><div class="actionrow" style="margin-top:10px"><span class="status" id="analysis">等待战斗数据</span><button class="outline" id="copy">复制战报</button><button class="outline" id="rematch">再次对决</button></div></section><footer class="minitip" style="text-align:center;padding:14px 0 25px">三国·武将巅峰对决 © 2D原型 · 单文件离线运行 · 自动保存战报到本机</footer></main><script src="./assets/art-00.js"></script>
 <script src="./assets/art-01.js"></script>
 <script src="./assets/art-02.js"></script>
@@ -174,12 +227,14 @@ const strike = weaponMotion(a);
 arena.dataset.direction = at === 0 ? 'right' : 'left';
 arena.dataset.strike = strike;
 if (dramatic) {
+  const windup = special ? 350 : 265;
+  attacker.style.setProperty('--windup', windup+'ms');
   attacker.dataset.phase = 'windup';
-  await sleep(special ? 330 : 245);
+  await sleep(windup);
 }
 attacker.dataset.motion = strike;
 attacker.dataset.phase = 'charge';
-await sleep(235);
+await sleep(attacker.dataset.figure ? 248 : 235);
 attacker.dataset.phase = 'contact';
 arena.dataset.contact = '';
 let response, cue, effect;
@@ -201,7 +256,7 @@ s[at].energy=Math.max(0,s[at].energy-3);s[def].energy=Math.max(0,s[def].energy-1
 await sleep(155);
 delete arena.dataset.contact;
 attacker.dataset.phase = 'recover';
-await sleep(210);
+await sleep(attacker.dataset.figure ? 270 : 210);
 impact.textContent='';
 delete attacker.dataset.phase;
 delete attacker.dataset.motion;
